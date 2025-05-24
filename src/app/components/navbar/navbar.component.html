@@ -1,0 +1,90 @@
+<div class="navbar text-base-content px-4 flex flex-row w-screen bg-base-300 justify-between items-center">
+  <div class="flex items-end">
+    <div class="text-3xl font-bold">Flet<span class="text-primary">Nix</span></div>
+    <ul class="menu menu-horizontal p-0 px-2 ml-10 text-lg font-semibold">
+      <li class="">
+        <a routerLink="/">Home</a>
+      </li>
+      <li class="">
+        <a routerLink="/">Movies</a>
+      </li>
+      <li class="">
+        <a routerLink="/">Tv Shows</a>
+      </li>
+      <li class="dropdown dropdown-bottom dropdown-end">
+        <details>
+          <summary>Categories</summary>
+          <ul class="menu menu-md dropdown-content bg-base-300 rounded-box z-1 mt-3 w-40 p-2 shadow">
+            <li><a routerLink="/categories/Comedies">Comedies</a></li>
+            <li><a routerLink="/categories/Dramas">Dramas</a></li>
+            <li><a routerLink="/categories/International">International</a></li>
+            <li><a routerLink="/categories/Action & Adventure">Action & Adventure</a></li>
+            <li><a routerLink="/categories/Crime">Crime</a></li>
+            <li><a routerLink="/categories/Horror">Horror</a></li>
+            <li><a routerLink="/categories/Dramas">Dramas</a></li>
+            <li><a routerLink="/categories/Documentaries">Documentaries</a></li>
+            <li><a routerLink="/categories/Sci-Fi & Fantasy">Sci-Fi & Fantasy</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+
+    <div class="flex items-center gap-2">
+        <input
+        type="text"
+        placeholder="Search movies..."
+        [(ngModel)]="searchQuery"
+        class="input input-bordered w-xs rounded-3xl"
+        />
+      <div id="filter" class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-secondary btn-circle items-center">
+            <ng-icon name="ionOptions" color="white"/>
+        </div>
+        <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow">
+            <li>
+                <label class="label">
+                    <input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
+                    Title
+                </label>
+            </li>
+            <li>
+                <label class="label">
+                    <input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
+                    Cast
+                </label>
+            </li>
+            
+        </ul>
+    </div>
+    <button
+      type="button"
+      (click)="onSearch()"
+      class="btn btn-outline btn-primary rounded-3xl"
+    >
+    <ng-icon name="ionSearch"/> Search
+    </button>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img
+            alt="Tailwind CSS Navbar component"
+            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li>
+          <a class="justify-between">
+            Profile
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
