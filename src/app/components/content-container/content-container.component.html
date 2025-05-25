@@ -1,0 +1,10 @@
+<div class="content-container grid grid-cols-5 auto-rows-fr gap-12 p-10">
+    <div *ngIf="isEmpty && query" class="no-results">
+        <p>No results found for "{{ query }}"</p>
+    </div>
+    
+    <app-content-card 
+        *ngFor="let item of contentData"
+        [content]="item">
+    </app-content-card>
+</div>

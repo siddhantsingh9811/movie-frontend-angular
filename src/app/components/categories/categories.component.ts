@@ -8,12 +8,13 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent implements OnInit{
-  category = '';
+  query = '';
   constructor(private route: ActivatedRoute) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.category = params.get('category') || '';
-      // TODO: fetch and display movies based on this.category
+      this.query = params.get('query') || '';
+      // TODO: fetch and display movies based on this.query
+      console.log(this.query)
     });
   }
 }

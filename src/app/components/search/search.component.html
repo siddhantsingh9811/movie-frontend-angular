@@ -1,4 +1,60 @@
 <div class="search-results">
-  <h2>Results for "{{ query }}"</h2>
-  <!-- TODO: Display movie cards here based on the query -->
+  <div class="text-2xl font-semibold" *ngIf="query != ''"><h1><span class="text-primary">Results for</span> "{{ query }}"</h1></div>
+  <div class="text-2xl font-semibold" *ngIf="category != ''"><h1><span class="text-primary">Category:</span> {{ category }}</h1></div>
+
+  <div *ngIf="isLoading">Loading results...</div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+  <app-content-container
+    [contentData]="contentService.searchResults()"
+    [query]="query"
+    [isEmpty]="contentService.searchResults().length === 0">
+  </app-content-container>
+</div>
+<div class="join flex justify-center my-4" *ngIf="contentService.pagination() as pagination">
+  <!-- Previous Button -->
+  <button class="join-item btn"
+          (click)="goToPage(pagination.page - 1)"
+          [disabled]="pagination.page === 1">
+    «
+  </button>
+
+  <!-- First Page -->
+  <input *ngIf="showFirstPage()"
+         type="radio"
+         name="pagination"
+         class="join-item btn btn-square"
+         [attr.aria-label]="'1'"
+         [checked]="pagination.page === 1"
+         (change)="goToPage(1)" />
+
+  <!-- Ellipsis before -->
+  <span *ngIf="showFirstEllipsis()" class="join-item btn btn-disabled">...</span>
+
+  <!-- Middle Pages -->
+  <input *ngFor="let page of getMiddlePages()"
+         type="radio"
+         name="pagination"
+         class="join-item btn btn-square"
+         [attr.aria-label]="page"
+         [checked]="pagination.page === page"
+         (change)="goToPage(page)" />
+
+  <!-- Ellipsis after -->
+  <span *ngIf="showLastEllipsis()" class="join-item btn btn-disabled">...</span>
+
+  <!-- Last Page -->
+  <input *ngIf="showLastPage()"
+         type="radio"
+         name="pagination"
+         class="join-item btn btn-square"
+         [attr.aria-label]="pagination.totalPages"
+         [checked]="pagination.page === pagination.totalPages"
+         (change)="goToPage(pagination.totalPages)" />
+
+  <!-- Next Button -->
+  <button class="join-item btn"
+          (click)="goToPage(pagination.page + 1)"
+          [disabled]="pagination.page === pagination.totalPages">
+    »
+  </button>
 </div>

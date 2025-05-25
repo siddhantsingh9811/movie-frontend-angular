@@ -19,8 +19,16 @@ export const routes: Routes = [
       },
       {
         path: 'categories/:category',
-        loadComponent: () => import('./components/categories/categories.component').then(m => m.CategoriesComponent)
+        // loadComponent: () => import('./components/categories/categories.component').then(m => m.CategoriesComponent)
+        loadComponent: () => import('./components/search/search.component').then(m => m.SearchComponent)
+
+      },
+      {
+        path: '',
+        loadComponent: () => import('./components/search/search.component').then(m => m.SearchComponent)
+
       }
+
 
     ]
   },

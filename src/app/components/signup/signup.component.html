@@ -1,40 +1,61 @@
-<div class="max-w-sm mx-auto bg-white shadow-md rounded p-6 mt-8">
-  <h2 class="text-xl mb-4 font-semibold">Sign Up</h2>
-  <form (ngSubmit)="onSignup()" class="space-y-4">
-    <div>
-      <label for="username" class="block mb-1">Username</label>
-      <input
-        id="username"
-        name="username"
-        [(ngModel)]="username"
-        class="w-full px-3 py-2 border rounded"
-      />
+<div class="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
+  <div class="bg-card flex flex-col gap-6 rounded-xl shadow-xl overflow-hidden p-0 bg-base-300">
+    <div class="grid p-0 md:grid-cols-2">
+
+      <!-- Left illustration or component -->
+      <div class="hidden md:block">        
+        <img class="h-[65vh] object-cover rounded-l-xl dark:brightness-[0.8] dark:grayscale" src="https://plus.unsplash.com/premium_photo-1686255006386-5f58b00ffe9d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dmVydGljYWwlMjB3YWxscGFwZXJ8ZW58MHx8MHx8fDA%3D" alt="Welcome"/>
+
+      </div>
+
+      <!-- Right signup form -->
+      <div class="p-6 pt-25">
+        <h2 class="text-2xl font-semibold mb-2 text-center">Sign Up</h2>
+        <form (ngSubmit)="onSignup()">
+
+          <div class="form-control w-full mt-4">
+            <label class="label">
+              <span class="label-text">Email</span>
+            </label>
+            <input [(ngModel)]="email" name="email" type="email" class="input input-bordered w-full" required />
+          </div>
+
+          <div class="form-control w-full mt-4">
+            <label class="label">
+              <span class="label-text">Age</span>
+            </label>
+            <input [(ngModel)]="age" name="age" type="number" class="input input-bordered w-full" required />
+          </div>
+
+          <div class="form-control w-full mt-4">
+            <label class="label">
+              <span class="label-text">Password</span>
+            </label>
+            <input [(ngModel)]="password" name="password" type="password" class="input input-bordered w-full" required />
+          </div>
+
+          <div class="form-control w-full mt-4">
+            <label class="label">
+              <span class="label-text">Confirm Password</span>
+            </label>
+            <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" class="input input-bordered w-full" required />
+          </div>
+
+          <p *ngIf="errorMessage" class="text-error mt-8 text-sm">{{ errorMessage }}</p>
+
+          <button
+            type="submit"
+            class="btn mt-2 w-full btn-primary"
+          >
+            Sign Up
+          </button>
+
+          <div class="text-center mt-4">
+            Already have an account?
+            <a routerLink="/login" class="hover:text-primary hover:underline cursor-pointer">Login</a>
+          </div>
+        </form>
+      </div>
     </div>
-    <div>
-      <label for="email" class="block mb-1">Email</label>
-      <input
-        id="email"
-        type="email"
-        name="email"
-        [(ngModel)]="email"
-        class="w-full px-3 py-2 border rounded"
-      />
-    </div>
-    <div>
-      <label for="password" class="block mb-1">Password</label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        class="w-full px-3 py-2 border rounded"
-      />
-    </div>
-    <button
-      type="submit"
-      class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded"
-    >
-      Sign Up
-    </button>
-  </form>
+  </div>
 </div>

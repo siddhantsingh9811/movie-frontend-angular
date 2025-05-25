@@ -1,30 +1,65 @@
-<div class="max-w-sm mx-auto bg-white shadow-md rounded p-6 mt-8">
-  <h2 class="text-xl mb-4 font-semibold">Login</h2>
-  <form (ngSubmit)="onLogin()" class="space-y-4">
-    <div>
-      <label for="username" class="block mb-1">Username</label>
-      <input
-        id="username"
-        name="username"
-        [(ngModel)]="username"
-        class="w-full px-3 py-2 border rounded"
-      />
+<div class="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
+  <div class="bg-card flex flex-col gap-6 rounded-xl shadow-xl overflow-hidden p-0 bg-base-300">
+    <div class="grid p-0 md:grid-cols-2">
+      
+      <!-- Left section (can be an image or component like LandingIntro) -->
+      <div class="hidden md:block">
+        <img class="h-[65vh] object-cover rounded-l-xl dark:brightness-[0.8] dark:grayscale" src="https://plus.unsplash.com/premium_photo-1686255006386-5f58b00ffe9d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dmVydGljYWwlMjB3YWxscGFwZXJ8ZW58MHx8MHx8fDA%3D" alt="Welcome"/>
+      </div>
+
+      <!-- Right section (login form) -->
+      <div class="p-6 pt-25">
+        <h2 class="text-2xl font-semibold mb-2 text-center">Login</h2>
+        <form (ngSubmit)="onLogin()">
+
+          <div class="form-control w-full mt-4">
+            <label class="label" for="email">
+              <span class="label-text">Email Id</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              [(ngModel)]="email"
+              class="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          <div class="form-control w-full mt-4">
+            <label class="label" for="password">
+              <span class="label-text">Password</span>
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              [(ngModel)]="password"
+              class="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          <div class="text-right text-primary mt-2">
+            <a routerLink="/forgot-password" class="text-sm hover:underline">Forgot Password?</a>
+          </div>
+
+          <p *ngIf="errorMessage" class="text-error mt-8 text-sm">{{ errorMessage }}</p>
+
+          <button
+            type="submit"
+            class="btn mt-2 w-full btn-primary"
+          >
+            Login
+          </button>
+
+          <div class="text-center mt-4">
+            Don't have an account yet?
+            <a routerLink="/signup" class="hover:text-primary hover:underline">Register</a>
+          </div>
+
+        </form>
+      </div>
     </div>
-    <div>
-      <label for="password" class="block mb-1">Password</label>
-      <input
-        id="password"
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        class="w-full px-3 py-2 border rounded"
-      />
-    </div>
-    <button
-      type="submit"
-      class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
-    >
-      Login
-    </button>
-  </form>
+  </div>
 </div>

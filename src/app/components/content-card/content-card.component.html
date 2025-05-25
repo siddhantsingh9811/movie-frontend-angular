@@ -1,0 +1,96 @@
+<!-- <div class="content-card">
+    <h3>{{ content.title }}</h3>
+    
+    <p *ngIf="content.description">{{ content.description }}</p>
+    <p *ngIf="content.releaseDate">Released: {{ content.releaseDate | date }}</p>
+</div> -->
+<!-- <div class="card bg-neutral shadow-sm m-6 w-100 ">
+  <figure>
+    <img
+      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">
+      {{ content.title }}
+      <div class="badge badge-secondary">NEW</div>
+    </h2>
+    <p>{{ content.description }}</p>
+    <div class="card-actions justify-end">
+      <div class="badge badge-outline">Fashion</div>
+      <div class="badge badge-outline">Products</div>
+    </div>
+  </div>
+</div> -->
+<!-- Card Component -->
+<div class="content-card card rounded-b-none cursor-pointer" (click)="openModal()">
+  <figure class="relative">
+    <img
+      class="w-full h-auto object-cover rounded-b-none aspect-2/3"
+      [src]="'https://picsum.photos/seed/' + content.id + '/400/600'" 
+      [alt]="content.title"
+    />
+  </figure>
+  <div class="card-body p-2">
+    <h2 class="text-white text-sm font-semibold truncate">{{ content.title }}</h2>
+
+    <div class="text-gray-400 text-sm flex flex-row justify-start items-baseline gap-2">
+        <div *ngIf="content.type=='Movie'" class="badge badge-soft badge-secondary"> <ng-icon name="ionTvOutline"/>{{ content.type }} </div>
+        <div *ngIf="content.type=='TV Show'" class="badge badge-soft badge-info"> <ng-icon name="ionTvOutline"/>{{ content.type }} </div>
+        <div class="badge badge-soft badge-warning"> <ng-icon name="ionTvOutline"/>{{ content.rating }} </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<dialog #modal [id]="'modal-' + content.id" class="modal">
+
+    <div class="card card-side bg-base-100 shadow-sm modal-box p-0 w-5/6 max-w-4xl h-[50vh]">
+  <!-- Close Button -->
+  <form method="dialog">
+    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
+  </form>
+  
+  <!-- Image Section -->
+  <figure class="min-w-[300px] h-auto flex-shrink-0">
+    <img
+      [src]="'https://picsum.photos/seed/' + content.id + '/400/600'"
+      class="w-full h-full object-cover aspect-2/3"
+      alt="{{ content.title }}"
+    />
+  </figure>
+  
+  <!-- Content Section -->
+  <div class="card-body overflow-auto">
+    <h2 class="card-title">
+      {{ content.title }}
+      <div *ngIf="content.type=='Movie'" class="badge badge-soft badge-secondary font-normal"> <ng-icon name="ionTvOutline"/>{{ content.type }} </div>
+      <div *ngIf="content.type=='TV Show'" class="badge badge-soft badge-info font-normal"> <ng-icon name="ionTvOutline"/>{{ content.type }} </div>
+      <div class="badge badge-soft badge-primary font-normal"> {{ content.release_year }} </div>
+      
+    </h2>
+    <div class="flex-grow">
+        <span class="font-bold">Duration: </span> <span class="text-emerald-500">{{ content.duration }}</span>
+        <br>
+        {{ content.description }}
+        <br>
+        <br>
+        <div class="collapse collapse-arrow border">
+            <input id="inp" type="checkbox" class="p-0"/>
+            <div class="collapse-title font-semibold">Cast</div>
+            <div class="collapse-content text-sm">
+                {{ content.cast }}
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="card-actions justify-end">
+      <div *ngFor="let category of getCategories()" class="badge badge-soft badge-accent">
+        {{ category }}
+    </div>
+    </div>
+  </div>
+</div>
+
+</dialog>

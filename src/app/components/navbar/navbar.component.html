@@ -5,12 +5,7 @@
       <li class="">
         <a routerLink="/">Home</a>
       </li>
-      <li class="">
-        <a routerLink="/">Movies</a>
-      </li>
-      <li class="">
-        <a routerLink="/">Tv Shows</a>
-      </li>
+      
       <li class="dropdown dropdown-bottom dropdown-end">
         <details>
           <summary>Categories</summary>
@@ -33,7 +28,7 @@
     <div class="flex items-center gap-2">
         <input
         type="text"
-        placeholder="Search movies..."
+        placeholder="Search..."
         [(ngModel)]="searchQuery"
         class="input input-bordered w-xs rounded-3xl"
         />
@@ -41,23 +36,52 @@
         <div tabindex="0" role="button" class="btn btn-secondary btn-circle items-center">
             <ng-icon name="ionOptions" color="white"/>
         </div>
-        <ul
-            tabindex="0"
-            class="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li>
-                <label class="label">
-                    <input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
-                    Title
-                </label>
-            </li>
-            <li>
-                <label class="label">
-                    <input type="checkbox" checked="checked" class="checkbox checkbox-sm" />
-                    Cast
-                </label>
-            </li>
-            
-        </ul>
+        <div>
+          <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              <li>
+                <details>
+                  <summary>Search By</summary>
+                  <ul>
+    
+                    <li>
+                        <label class="label">
+                            <input type="checkbox" [checked]="searchParams().title" (change)="toggleTitle()" [disabled]="!searchParams().cast" class="checkbox checkbox-sm" />
+                            Title
+                        </label>
+                    </li>
+                    <li>
+                        <label class="label">
+                            <input type="checkbox" [checked]="searchParams().cast" (change)="toggleCast()" [disabled]="!searchParams().title" class="checkbox checkbox-sm" />
+                            Cast
+                        </label>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>Type</summary>
+                  <ul>
+    
+                    <li>
+                        <label class="label">
+                            <input type="checkbox" [checked]="searchParams().movies" (change)="toggleMovies()" [disabled]="!searchParams().shows" class="checkbox checkbox-sm" />
+                            Movies
+                        </label>
+                    </li>
+                    <li>
+                        <label class="label">
+                            <input type="checkbox" [checked]="searchParams().shows" (change)="toggleShows()" [disabled]="!searchParams().movies" class="checkbox checkbox-sm" />
+                            TV Shows
+                        </label>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+          </ul>
+        </div>
     </div>
     <button
       type="button"
@@ -83,7 +107,7 @@
           </a>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li (click)="logout()"><a>Logout</a></li>
       </ul>
     </div>
   </div>
